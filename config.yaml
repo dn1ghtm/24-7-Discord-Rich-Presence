@@ -1,22 +1,27 @@
 name: "Discord 24/7 Rich Presence"
-version: "0.1.1"
+version: "0.1.2"
 slug: "discord_247_rich_presence"
 description: "Keep your Discord account online 24/7 with custom Rich Presence!"
 url: "https://github.com/nexoscreation/discord-24-7-rich-presence"
 startup: application
 boot: auto
+init: false
+startup_message: >-
+  Starting Discord 24/7 Rich Presence add-on...
+  This may take a few moments to initialize.
 arch:
   - aarch64
   - amd64
   - armhf
   - armv7
   - i386
-init: false
 panel_icon: "mdi:discord"
 panel_admin: true
 ingress: true
 ingress_port: 8099
 ingress_stream: true
+host_network: false
+webui: "http://[HOST]:[PORT:8099]/"
 map:
   - config:rw
 options:

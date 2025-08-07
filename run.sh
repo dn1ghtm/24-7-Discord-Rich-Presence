@@ -54,12 +54,29 @@ echo "PORT=8099" >> /app/.env
 # Print startup message
 bashio::log.info "Starting Discord 24/7 Rich Presence..."
 
+# Check if express module is installed
+if [ ! -d "/app/node_modules/express" ]; then
+  bashio::log.warning "Express module not found, installing..."
+  cd /app && npm install express@4.21.2
+fi
+
 # Start the app and web server
 cd /app
 
 # Start the web server in the background
 bashio::log.info "Starting web interface on port 8099..."
-node server.js & 
+node server.js > /tmp/server.log 2>&1 & 
+WEB_SERVER_PID=$!
+sleep 3 # Give the server a moment to start
+
+# Check if the web server started successfully
+if ! kill -0 $WEB_SERVER_PID 2>/dev/null; then
+  bashio::log.error "Web server failed to start. Check /tmp/server.log for details."
+  cat /tmp/server.log
+else
+  bashio::log.info "Web server started successfully with PID $WEB_SERVER_PID"
+fi
 
 # Start the Discord bot
+bashio::log.info "Starting Discord bot..."
 node index.js

@@ -1,11 +1,13 @@
 # Changelog
 
-## 0.1.0
+## 0.1.2
 
-- Initial release as a Home Assistant add-on
-- Added configuration through Home Assistant UI
-- Added documentation for add-on usage
-- Converted project structure to Home Assistant add-on format
+- Fixed installation issues with Docker container
+- Improved error handling in web server
+- Added healthcheck for better container stability
+- Enhanced AppArmor profile for proper file permissions
+- Added automatic recovery for web server startup issues
+- Improved logging for easier troubleshooting
 
 ## 0.1.1
 
@@ -13,6 +15,13 @@
 - Added display of Discord Rich Presence images in web interface
 - Added real-time status monitoring with automatic updates
 - Improved documentation with web interface details
+
+## 0.1.0
+
+- Initial release as a Home Assistant add-on
+- Added configuration through Home Assistant UI
+- Added documentation for add-on usage
+- Converted project structure to Home Assistant add-on format
 
 ## 0.0.1
 

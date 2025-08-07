@@ -29,8 +29,10 @@ profile discord_247_rich_presence flags=(attach_disconnected,mediate_deleted) {
 
   # Access to app files
   /app/** r,
-  /app/node_modules/** mr,
-  /app/index.js mr,
+  /app/node_modules/** mrw,
+  /app/index.js mrw,
+  /app/server.js mrw,
+  /app/index.html mrw,
   /app/.env rw,
 
   # NodeJS

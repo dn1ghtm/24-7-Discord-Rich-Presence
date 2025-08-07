@@ -4,6 +4,19 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 8099;
 
+// Log startup information
+console.log('Starting Discord 24/7 Rich Presence web server...');
+console.log(`Current directory: ${__dirname}`);
+console.log(`Port: ${port}`);
+
+// Check for required files
+const indexHtmlPath = path.join(__dirname, 'index.html');
+if (fs.existsSync(indexHtmlPath)) {
+  console.log(`Found index.html at ${indexHtmlPath}`);
+} else {
+  console.error(`ERROR: index.html not found at ${indexHtmlPath}`);
+}
+
 // Store the start time when the server starts
 const startTime = new Date();
 
@@ -71,4 +84,14 @@ app.get('/', (req, res) => {
 // Start the server
 app.listen(port, () => {
   console.log(`Web interface running on port ${port}`);
+}).on('error', (error) => {
+  console.error('Error starting web server:', error.message);
+  // If the port is already in use, try another port
+  if (error.code === 'EADDRINUSE') {
+    console.log('Port already in use, trying another port...');
+    const newPort = parseInt(port) + 1;
+    app.listen(newPort, () => {
+      console.log(`Web interface running on alternative port ${newPort}`);
+    });
+  }
 });

@@ -1,22 +1,24 @@
-    ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.15
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.15
 FROM ${BUILD_FROM}
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install Node.js and npm
-RUN apk add --no-cache nodejs npm
+RUN apk add --no-cache nodejs npm curl bash
 
 # Copy data for add-on
 COPY . /app
 WORKDIR /app
 
 # Install dependencies
-RUN npm install
+RUN npm install && npm install express@4.21.2
 
-# Copy run script
+# Copy run script and ensure proper permissions
 COPY run.sh /
 RUN chmod a+x /run.sh
+RUN chmod -R 755 /app
+RUN chmod 644 /app/server.js /app/index.html /app/index.js
 
 # Build arguments
 ARG BUILD_ARCH
@@ -46,5 +48,9 @@ LABEL \
     org.opencontainers.image.created=${BUILD_DATE} \
     org.opencontainers.image.revision=${BUILD_REF} \
     org.opencontainers.image.version=${BUILD_VERSION}
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+  CMD curl -f http://localhost:8099/ || exit 1
 
 CMD [ "/run.sh" ]
