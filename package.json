@@ -1,0 +1,29 @@
+{
+  "name": "discord-24-7-rich-presence",
+  "version": "0.0.1",
+  "description": "Keep your Discord account online 24/7 with custom Rich Presence!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nexoscreation/discord-24-7-rich-presence.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-rpc-always-online",
+    "self-bot"
+  ],
+  "author": "nexoscreator",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nexoscreation/discord-24-7-rich-presence/issues"
+  },
+  "homepage": "https://github.com/nexoscreation/discord-24-7-rich-presence#readme",
+  "dependencies": {
+    "discord.js-selfbot-v13": "^3.6.1",
+    "dotenv": "^16.5.0"
+  }
+}

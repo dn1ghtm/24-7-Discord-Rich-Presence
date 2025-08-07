@@ -1,0 +1,22 @@
+{
+    "application_id": "1311204057490259979",
+    "type": "WATCHING",
+    "name": "Youtube",
+    "details": "Watching Nexos Creator",
+    "state": "Subscribe",
+    "largeImageKey": "1377844502521446490",
+    "largeImageText": "Watching Nexos Creator",
+    "smallImageKey": "1377845999464087653",
+    "smallImageText": "Subscribe",
+    "url": "https://www.youtube.com/@nexoscreator",
+    "buttons": [
+        {
+            "name": "Website",
+            "url": "https://www.nexoscreator.tech"
+        },
+        {
+            "name": "Youtube",
+            "url": "https://www.youtube.com/@nexoscreator"
+        }
+    ]
+}

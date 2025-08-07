@@ -1,0 +1,46 @@
+#include <tunables/global>
+
+profile discord_247_rich_presence flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Capabilities
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # S6-Overlay
+  /init ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /run/{s6,s6-rc*,service}/** ix,
+  /package/** ix,
+  /command/** ix,
+  /etc/services.d/** rwix,
+  /etc/cont-init.d/** rwix,
+  /etc/cont-finish.d/** rwix,
+  /run/{,**} rwk,
+  /dev/tty rw,
+
+  # Bashio
+  /usr/lib/bashio/** ix,
+  /tmp/** rwk,
+
+  # Access to options.json and other files within the addon
+  /data/** rw,
+
+  # Access to app files
+  /app/** r,
+  /app/node_modules/** mr,
+  /app/index.js mr,
+  /app/.env rw,
+
+  # NodeJS
+  /usr/bin/node mr,
+  /usr/lib/node_modules/** mr,
+
+  # System
+  /proc/** r,
+  /sys/** r,
+
+  # Internet access
+  network,
+}

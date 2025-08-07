@@ -1,0 +1,53 @@
+name: "Discord 24/7 Rich Presence"
+version: "0.1.0"
+slug: "discord_247_rich_presence"
+description: "Keep your Discord account online 24/7 with custom Rich Presence!"
+url: "https://github.com/nexoscreation/discord-24-7-rich-presence"
+startup: application
+boot: auto
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+init: false
+panel_icon: "mdi:discord"
+panel_admin: true
+ingress: true
+ingress_port: 8099
+ingress_stream: true
+map:
+  - config:rw
+options:
+  discord_token: ""
+  application_id: "1311204057490259979"
+  type: "WATCHING"
+  name: "Youtube"
+  details: "Watching Nexos Creator"
+  state: "Subscribe"
+  largeImageKey: "1377844502521446490"
+  largeImageText: "Watching Nexos Creator"
+  smallImageKey: "1377845999464087653"
+  smallImageText: "Subscribe"
+  url: "https://www.youtube.com/@nexoscreator"
+  buttons:
+    - name: "Website"
+      url: "https://www.nexoscreator.tech"
+    - name: "Youtube"
+      url: "https://www.youtube.com/@nexoscreator"
+schema:
+  discord_token: str
+  application_id: str
+  type: str
+  name: str
+  details: str
+  state: str
+  largeImageKey: str
+  largeImageText: str
+  smallImageKey: str
+  smallImageText: str
+  url: str
+  buttons:
+    - name: str
+      url: str

@@ -1,0 +1,15 @@
+build_from:
+  aarch64: "ghcr.io/home-assistant/aarch64-base:3.15"
+  amd64: "ghcr.io/home-assistant/amd64-base:3.15"
+  armhf: "ghcr.io/home-assistant/armhf-base:3.15"
+  armv7: "ghcr.io/home-assistant/armv7-base:3.15"
+  i386: "ghcr.io/home-assistant/i386-base:3.15"
+labels:
+  org.opencontainers.image.title: "Home Assistant Add-on: Discord 24/7 Rich Presence"
+  org.opencontainers.image.description: "Keep your Discord account online 24/7 with custom Rich Presence!"
+  org.opencontainers.image.source: "https://github.com/nexoscreation/discord-24-7-rich-presence"
+  org.opencontainers.image.licenses: "MIT"
+args:
+  BUILD_DESCRIPTION: "Keep your Discord account online 24/7 with custom Rich Presence!"
+  BUILD_NAME: "Discord 24/7 Rich Presence"
+  BUILD_REPOSITORY: "https://github.com/nexoscreation/discord-24-7-rich-presence"
