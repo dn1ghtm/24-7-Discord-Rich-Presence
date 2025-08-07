@@ -16,6 +16,8 @@
 - 🏠 Available as a **Home Assistant add-on**
 - 🔒 Lightweight and safe (no automation/selfbot)
 - ⚙️ Configurable via JSON file or Home Assistant UI
+- 🖼️ Web interface with image display on Home Assistant dashboard
+- 🔄 Real-time status monitoring with automatic updates
 
 ---
 
@@ -44,6 +46,12 @@
 4. **Start the add-on**
 
    - Toggle the "Start" switch to run the add-on
+
+5. **Access the web interface**
+
+   - The add-on will appear on your Home Assistant dashboard
+   - Click on the Discord icon to open the web interface
+   - View your Rich Presence status, images, and buttons in real-time
 
 ### Option 2: Standalone Installation
 

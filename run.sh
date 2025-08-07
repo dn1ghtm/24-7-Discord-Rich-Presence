@@ -13,6 +13,10 @@ SMALL_IMAGE_KEY=$(bashio::config 'smallImageKey')
 SMALL_IMAGE_TEXT=$(bashio::config 'smallImageText')
 URL=$(bashio::config 'url')
 
+# Log image keys for debugging
+bashio::log.info "Large Image Key: ${LARGE_IMAGE_KEY}"
+bashio::log.info "Small Image Key: ${SMALL_IMAGE_KEY}"
+
 # Get button information
 BUTTON1_NAME=$(bashio::config 'buttons[0].name')
 BUTTON1_URL=$(bashio::config 'buttons[0].url')
@@ -38,9 +42,24 @@ BUTTON2_NAME=${BUTTON2_NAME}
 BUTTON2_URL=${BUTTON2_URL}
 EOL
 
+# Verify environment variables are set correctly
+bashio::log.info "Environment variables set in .env file"
+bashio::log.info "APPLICATION_ID: ${APPLICATION_ID}"
+bashio::log.info "LARGE_IMAGE_KEY: ${LARGE_IMAGE_KEY}"
+bashio::log.info "SMALL_IMAGE_KEY: ${SMALL_IMAGE_KEY}"
+
+# Set port for web interface
+echo "PORT=8099" >> /app/.env
+
 # Print startup message
 bashio::log.info "Starting Discord 24/7 Rich Presence..."
 
-# Start the app
+# Start the app and web server
 cd /app
+
+# Start the web server in the background
+bashio::log.info "Starting web interface on port 8099..."
+node server.js & 
+
+# Start the Discord bot
 node index.js

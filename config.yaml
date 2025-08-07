@@ -1,5 +1,5 @@
 name: "Discord 24/7 Rich Presence"
-version: "0.1.0"
+version: "0.1.1"
 slug: "discord_247_rich_presence"
 description: "Keep your Discord account online 24/7 with custom Rich Presence!"
 url: "https://github.com/nexoscreation/discord-24-7-rich-presence"

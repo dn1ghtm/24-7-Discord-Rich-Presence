@@ -29,11 +29,16 @@ app.get('/api/status', (req, res) => {
       name: process.env.NAME || 'Youtube',
       details: process.env.DETAILS || 'Watching Nexos Creator',
       state: process.env.STATE || 'Subscribe',
+      largeImageKey: process.env.LARGE_IMAGE_KEY || '1377844502521446490',
       largeImageText: process.env.LARGE_IMAGE_TEXT || 'Watching Nexos Creator',
+      smallImageKey: process.env.SMALL_IMAGE_KEY || '1377845999464087653',
       smallImageText: process.env.SMALL_IMAGE_TEXT || 'Subscribe',
       url: process.env.URL || 'https://www.youtube.com/@nexoscreator',
       uptime: uptimeText,
-      buttons: []
+      buttons: [],
+      // Generate Discord CDN image URLs
+      largeImageUrl: `https://cdn.discordapp.com/app-assets/${process.env.APPLICATION_ID || '1311204057490259979'}/${process.env.LARGE_IMAGE_KEY || '1377844502521446490'}.png`,
+      smallImageUrl: `https://cdn.discordapp.com/app-assets/${process.env.APPLICATION_ID || '1311204057490259979'}/${process.env.SMALL_IMAGE_KEY || '1377845999464087653'}.png`
     };
 
     // Add buttons if they exist

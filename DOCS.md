@@ -4,6 +4,8 @@
 
 This add-on allows you to keep your Discord account online 24/7 with a custom Rich Presence status. It shows games, music, or any activity—even when you're AFK. The add-on is lightweight and simple to use.
 
+The add-on includes a web interface accessible from your Home Assistant dashboard, allowing you to monitor your Discord Rich Presence status and view the images being displayed.
+
 ## Installation
 
 1. Add this repository to your Home Assistant instance.
@@ -48,6 +50,17 @@ buttons:
 - **discord_token**: Your Discord user token.
 - **application_id**: The Discord application ID to use for Rich Presence.
 - **type**: Activity type (PLAYING, WATCHING, LISTENING, STREAMING, COMPETING).
+
+## Web Interface
+
+The add-on provides a web interface that can be accessed directly from your Home Assistant dashboard. This interface displays:
+
+- Current Rich Presence status details
+- The large and small images from your Discord Rich Presence
+- Active buttons that link to your configured URLs
+- Uptime information
+
+The web interface automatically updates every 30 seconds to show the current status.
 - **name**: Name of the activity.
 - **details**: First line of Rich Presence.
 - **state**: Second line of Rich Presence.
