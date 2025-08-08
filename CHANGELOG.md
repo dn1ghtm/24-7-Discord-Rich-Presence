@@ -4,13 +4,16 @@
 
 - Fixed specific undici module error: "Cannot set properties of undefined (setting 'ReadableStream')" by creating a dedicated patch file
 - Added global scope polyfill for all Web Streams API components to ensure compatibility with undici
+- Upgraded Node.js version requirement from 18.17.0+ to 20.18.0+ to support discord.js-selfbot-v13 and undici dependencies
+- Updated Alpine Linux base image from 3.15 to 3.22 to better support Node.js 20.18.0+
+- Fixed npm engine warnings by ensuring compatibility with all required dependencies
 - Updated version to 1.0.6 to reflect stable release with all critical fixes
 
 ## 0.1.5
 
 - Changed base image source from GitHub Container Registry (ghcr.io) to Docker Hub (homeassistant) to resolve TLS handshake timeout issues
 - Improved build reliability for all supported architectures
-- Fixed persistent ReadableStream not defined error by upgrading Node.js to version 18.17.0+
+- Fixed persistent ReadableStream not defined error by upgrading Node.js to version 20.18.0+
 - Enhanced Web Streams API polyfill to include all required stream types (ReadableStream, WritableStream, TransformStream)
 - Added direct patching of undici module to fix ReadableStream references
 - Implemented multi-layer recovery approach for ReadableStream errors
@@ -22,15 +25,13 @@
 
 - Changed base image source from GitHub Container Registry (ghcr.io) to Docker Hub (homeassistant) to resolve TLS handshake timeout issues
 - Improved build reliability for all supported architectures
-- Fixed persistent ReadableStream not defined error by upgrading Node.js to version 18.17.0+
+- Fixed persistent ReadableStream not defined error by upgrading Node.js version
 - Enhanced Web Streams API polyfill to include all required stream types (ReadableStream, WritableStream, TransformStream)
 - Added direct patching of undici module to fix ReadableStream references
 - Implemented multi-layer recovery approach for ReadableStream errors
 - Added comprehensive error detection and automatic recovery for web server startup
 - Created specialized patches for undici compatibility
 - Ensured web-streams-polyfill is always installed before server startup
-- Fixed specific undici module error: "Cannot set properties of undefined (setting 'ReadableStream')" by creating a dedicated patch file
-- Added global scope polyfill for all Web Streams API components to ensure compatibility with undici
 
 ## 0.1.3
 

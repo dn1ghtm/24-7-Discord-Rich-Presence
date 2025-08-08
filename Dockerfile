@@ -1,11 +1,11 @@
-ARG BUILD_FROM=homeassistant/amd64-base:3.15
+ARG BUILD_FROM=homeassistant/amd64-base:3.22
 FROM ${BUILD_FROM}
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Install Node.js and npm (using a version that supports ReadableStream natively)
-RUN apk add --no-cache nodejs>=18.17.0 npm curl bash
+# Install Node.js and npm (using a version that supports discord.js-selfbot-v13 and undici)
+RUN apk add --no-cache nodejs>=20.18.0 npm curl bash
 
 # Install web-streams-polyfill as fallback for ReadableStream
 RUN npm install -g web-streams-polyfill
