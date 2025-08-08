@@ -4,8 +4,8 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Install Node.js and npm (using a newer version that supports ReadableStream)
-RUN apk add --no-cache nodejs>=16.0.0 npm curl bash
+# Install Node.js and npm (using a version that supports ReadableStream natively)
+RUN apk add --no-cache nodejs>=18.17.0 npm curl bash
 
 # Install web-streams-polyfill as fallback for ReadableStream
 RUN npm install -g web-streams-polyfill
@@ -15,14 +15,25 @@ COPY . /app
 WORKDIR /app
 
 # Install dependencies
-RUN npm install && npm install express@4.21.2
+RUN npm install && npm install express@4.21.2 web-streams-polyfill@3.2.1
+
+# Create patches directory and add undici patch
+RUN mkdir -p /app/patches
+RUN echo '// Patch for undici to ensure ReadableStream is available\nif (typeof ReadableStream === "undefined") {\n  const webStreams = require("web-streams-polyfill");\n  global.ReadableStream = webStreams.ReadableStream;\n  global.WritableStream = webStreams.WritableStream;\n  global.TransformStream = webStreams.TransformStream;\n  global.ByteLengthQueuingStrategy = webStreams.ByteLengthQueuingStrategy;\n  global.CountQueuingStrategy = webStreams.CountQueuingStrategy;\n  console.log("Applied undici-specific Web Streams API patch");\n}' > /app/patches/undici-fix.js
+
+# Patch undici module directly if it exists
+RUN UNDICI_PATH=$(find /app/node_modules -path "*/undici/lib/web/fetch/response.js" 2>/dev/null || echo "") && \
+    if [ ! -z "$UNDICI_PATH" ]; then \
+      sed -i 's/ReadableStream/global.ReadableStream/g' "$UNDICI_PATH"; \
+      echo "Patched undici module at build time"; \
+    fi
 
 # Copy run script and ensure proper permissions
 COPY run.sh /
 RUN chmod a+x /run.sh
 RUN chmod -R 755 /app
 RUN chmod 644 /app/server.js /app/index.html /app/index.js
-RUN touch /app/polyfill.js && chmod 644 /app/polyfill.js
+RUN chmod 644 /app/polyfill.js /app/patches/undici-fix.js
 
 # Build arguments
 ARG BUILD_ARCH
