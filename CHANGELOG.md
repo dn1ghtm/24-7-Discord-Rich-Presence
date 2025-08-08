@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4
+
+- Changed base image source from GitHub Container Registry (ghcr.io) to Docker Hub (homeassistant) to resolve TLS handshake timeout issues
+- Improved build reliability for all supported architectures
+
 ## 0.1.3
 
 - Fixed ReadableStream not defined error in Node.js environment
