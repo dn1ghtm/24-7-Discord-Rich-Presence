@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.0.6
+
+- Fixed specific undici module error: "Cannot set properties of undefined (setting 'ReadableStream')" by creating a dedicated patch file
+- Added global scope polyfill for all Web Streams API components to ensure compatibility with undici
+- Updated version to 1.0.6 to reflect stable release with all critical fixes
+
+## 0.1.5
+
+- Changed base image source from GitHub Container Registry (ghcr.io) to Docker Hub (homeassistant) to resolve TLS handshake timeout issues
+- Improved build reliability for all supported architectures
+- Fixed persistent ReadableStream not defined error by upgrading Node.js to version 18.17.0+
+- Enhanced Web Streams API polyfill to include all required stream types (ReadableStream, WritableStream, TransformStream)
+- Added direct patching of undici module to fix ReadableStream references
+- Implemented multi-layer recovery approach for ReadableStream errors
+- Added comprehensive error detection and automatic recovery for web server startup
+- Created specialized patches for undici compatibility
+- Ensured web-streams-polyfill is always installed before server startup
+
 ## 0.1.4
 
 - Changed base image source from GitHub Container Registry (ghcr.io) to Docker Hub (homeassistant) to resolve TLS handshake timeout issues
@@ -11,6 +29,8 @@
 - Added comprehensive error detection and automatic recovery for web server startup
 - Created specialized patches for undici compatibility
 - Ensured web-streams-polyfill is always installed before server startup
+- Fixed specific undici module error: "Cannot set properties of undefined (setting 'ReadableStream')" by creating a dedicated patch file
+- Added global scope polyfill for all Web Streams API components to ensure compatibility with undici
 
 ## 0.1.3
 
