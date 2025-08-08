@@ -1,4 +1,4 @@
-ARG BUILD_FROM=homeassistant/amd64-base:3.22
+ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
 # Set shell
