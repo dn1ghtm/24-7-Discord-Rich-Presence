@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- Fixed ReadableStream not defined error in Node.js environment
+- Added web-streams-polyfill for compatibility with older Node.js versions
+- Updated Node.js version requirements
+
 ## 0.1.2
 
 - Fixed installation issues with Docker container

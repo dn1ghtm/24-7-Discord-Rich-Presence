@@ -1,11 +1,11 @@
 {
   "name": "discord-24-7-rich-presence",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Keep your Discord account online 24/7 with custom Rich Presence!",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "web": "node server.js",
+    "web": "node -r ./polyfill.js server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +26,7 @@
   "dependencies": {
     "discord.js-selfbot-v13": "^3.6.1",
     "dotenv": "^16.5.0",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "web-streams-polyfill": "^3.2.1"
   }
 }

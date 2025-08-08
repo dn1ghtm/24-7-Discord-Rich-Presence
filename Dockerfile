@@ -4,8 +4,11 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Install Node.js and npm
-RUN apk add --no-cache nodejs npm curl bash
+# Install Node.js and npm (using a newer version that supports ReadableStream)
+RUN apk add --no-cache nodejs>=16.0.0 npm curl bash
+
+# Install web-streams-polyfill as fallback for ReadableStream
+RUN npm install -g web-streams-polyfill
 
 # Copy data for add-on
 COPY . /app
@@ -19,6 +22,7 @@ COPY run.sh /
 RUN chmod a+x /run.sh
 RUN chmod -R 755 /app
 RUN chmod 644 /app/server.js /app/index.html /app/index.js
+RUN touch /app/polyfill.js && chmod 644 /app/polyfill.js
 
 # Build arguments
 ARG BUILD_ARCH
